@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body text-dark bg-white antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* ── Glassmorphism card ── */
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/50 shadow-glass;
+  }
+
+  /* ── Section base ── */
+  .section-pad {
+    @apply py-20 md:py-28;
+  }
+
+  .container-pad {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ── Primary Button ── */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 font-ui font-semibold text-white
+           bg-gradient-to-r from-secondary to-secondary-400
+           px-6 py-3 rounded-2xl shadow-gold
+           transition-all duration-300 ease-out
+           hover:-translate-y-1 hover:shadow-gold-hover hover:brightness-105
+           active:translate-y-0 active:scale-95
+           focus:outline-none focus:ring-2 focus:ring-secondary/60 focus:ring-offset-2;
+  }
+
+  /* ── Secondary Button ── */
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 font-ui font-semibold
+           text-primary border-2 border-primary/30 bg-white/80 backdrop-blur-sm
+           px-6 py-3 rounded-2xl shadow-card
+           transition-all duration-300 ease-out
+           hover:-translate-y-1 hover:shadow-card-hover hover:border-primary hover:bg-primary hover:text-white
+           active:translate-y-0 active:scale-95
+           focus:outline-none focus:ring-2 focus:ring-primary/40 focus:ring-offset-2;
+  }
+
+  /* ── Ghost/Outline Button ── */
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 font-ui font-semibold
+           text-white border-2 border-white/60 bg-white/10 backdrop-blur-sm
+           px-6 py-3 rounded-2xl
+           transition-all duration-300 ease-out
+           hover:-translate-y-1 hover:bg-white hover:text-primary hover:border-white
+           active:translate-y-0 active:scale-95
+           focus:outline-none focus:ring-2 focus:ring-white/60 focus:ring-offset-2;
+  }
+
+  /* ── WhatsApp Button ── */
+  .btn-whatsapp {
+    @apply inline-flex items-center gap-2 font-ui font-semibold text-white
+           bg-[#25D366] px-6 py-3 rounded-2xl shadow-lg
+           transition-all duration-300
+           hover:-translate-y-1 hover:shadow-xl hover:bg-[#20BD5A]
+           active:translate-y-0 active:scale-95
+           focus:outline-none focus:ring-2 focus:ring-[#25D366]/60 focus:ring-offset-2;
+  }
+
+  /* ── Enquire Button (card level) ── */
+  .btn-enquire {
+    @apply inline-flex items-center gap-1.5 font-ui font-semibold text-sm
+           text-primary border border-primary/30 bg-primary/5
+           px-4 py-2 rounded-xl
+           transition-all duration-300
+           hover:bg-primary hover:text-white hover:border-primary hover:-translate-y-0.5 hover:shadow-md
+           active:scale-95;
+  }
+
+  /* ── Service/Feature Card ── */
+  .feature-card {
+    @apply bg-white rounded-3xl shadow-card border border-slate-100/80
+           transition-all duration-300 ease-out
+           hover:-translate-y-2 hover:shadow-card-hover hover:border-primary/20;
+  }
+
+  /* ── Destination Card ── */
+  .dest-card {
+    @apply rounded-3xl overflow-hidden shadow-card border border-slate-100/80
+           transition-all duration-300 ease-out
+           hover:-translate-y-2 hover:shadow-card-hover;
+  }
+
+  /* ── Section badge ── */
+  .section-badge {
+    @apply inline-flex items-center gap-2 bg-secondary/10 text-secondary-600 
+           font-ui font-semibold text-sm px-4 py-1.5 rounded-full border border-secondary/20;
+  }
+
+  /* ── Gradient text ── */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-primary-400 to-accent bg-clip-text text-transparent;
+  }
+
+  /* ── Scroll progress bar ── */
+  .scroll-progress {
+    @apply fixed top-0 left-0 h-1 bg-gradient-to-r from-secondary via-primary to-accent z-[100];
+  }
+}
+
+@layer utilities {
+  /* Glossy glass overlay */
+  .glossy {
+    background: linear-gradient(
+      135deg,
+      rgba(255,255,255,0.3) 0%,
+      rgba(255,255,255,0.05) 50%,
+      rgba(255,255,255,0.1) 100%
+    );
+  }
+
+  .glossy-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glossy-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255,255,255,0.15),
+      transparent
+    );
+    transform: skewX(-15deg);
+    transition: left 0.5s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .glossy-card:hover::before {
+    left: 130%;
+  }
+
+  /* Vibrant card color variants */
+  .card-blue    { background: linear-gradient(135deg, #0F4C81 0%, #1565A8 100%); }
+  .card-gold    { background: linear-gradient(135deg, #F5A623 0%, #F8BA4D 100%); }
+  .card-teal    { background: linear-gradient(135deg, #1ABC9C 0%, #16A085 100%); }
+  .card-purple  { background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%); }
+  .card-rose    { background: linear-gradient(135deg, #F43F5E 0%, #E11D48 100%); }
+  .card-indigo  { background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); }
+  .card-emerald { background: linear-gradient(135deg, #10B981 0%, #059669 100%); }
+  .card-orange  { background: linear-gradient(135deg, #F97316 0%, #EA580C 100%); }
+  .card-sky     { background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%); }
+  .card-pink    { background: linear-gradient(135deg, #EC4899 0%, #DB2777 100%); }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #F1F5F9; }
+  ::-webkit-scrollbar-thumb { background: #0F4C81; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #F5A623; }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
